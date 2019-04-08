@@ -2,10 +2,10 @@
 This is a boilerplate for a React.js and Redux for state managemnt. This app is for people who are already familiar with React and want a quick building block for a Redux managed application.
 This boilerplate is perfect for building larger applications that require more customizations and if you are looking to create small React applications without the complexity, I suggest The [Create React App](https://github.com/facebook/create-react-app), which this projet is built off of.
 
-##FEATURES
+## FEATURES
  - The Chrome Redux DevTool extension has been setup in the store.js file, the extension can be found here (https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en). It is an extremely useful devtool for Redux and I highly recommend it.
 
-##NOTES
+## NOTES
  - This application was built from the Create React App and has been changed to it's full customizable option, check 'config' folder.
 
 ## AVAILABLE SCRIPTS
