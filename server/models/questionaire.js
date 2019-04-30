@@ -10,7 +10,7 @@ var MultiResponseSchema = mongoose.Schema({
 
 var SectionSchema = mongoose.Schema({
     diaplayName: {type:String, required:true},
-    questions:[QuestionSchema,FreeSchema]
+    questions:[FreeResponseSchema, MultiResponseSchema]
 })
 
 var QuestionaireSchema = mongoose.Schema({
@@ -21,3 +21,4 @@ var QuestionaireSchema = mongoose.Schema({
 mongoose.model('Questionaire', QuestionaireSchema)
 mongoose.model('Section', SectionSchema)
 mongoose.model('FreeResponse', FreeResponseSchema)
+mongoose.model('MultiResponse', MultiResponseSchema)
