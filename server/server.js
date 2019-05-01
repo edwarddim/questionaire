@@ -11,8 +11,8 @@ app.use(session({
 }))
 
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/le_website');
-require('./server/config/mongoose.js');
+mongoose.connect('mongodb://localhost/questionaire');
+require('./config/mongoose.js');
 
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -20,6 +20,6 @@ app.use(bodyParser.json());
 var routes = require('./config/routes.js/index.js');
 routes(app);
 
-app.listen(8000, function(){
-    console.log("ON 8000");
-});
+// app.listen(8000, function(){
+//     console.log("ON 8000");
+// });
