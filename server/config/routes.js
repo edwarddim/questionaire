@@ -1,5 +1,5 @@
-const admin = require('./../controllers/admin.js')
 
+const admin = require('./../controllers/admin.js')
 
 module.exports = function(app){
     app.post('/api/freeresponse', admin.createFreeResponse);
@@ -11,5 +11,4 @@ module.exports = function(app){
     app.get('/api/multiresponse', admin.getMultiResponse);
     app.get('/api/section', admin.getSection);
     app.get('/api/questionaire', admin.getQuestionaire);
-
 }

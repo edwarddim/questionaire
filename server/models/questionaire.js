@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var FreeResponseSchema = mongoose.Schema({
-    type: {type:String, required:true}
+    question: {type:String, required:true}
 })
 
 var MultiResponseSchema = mongoose.Schema({
