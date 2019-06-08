@@ -1,25 +1,35 @@
+// APP
 var express = require('express');
 var app = express();
-require('./config/mongoose.js');
-var routes = require('./config/routes.js');
-
 var bodyParser = require('body-parser');
-var cors = require('cors')
-
-var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/questionaire');
-
-app.use(cors);
+var cors = require('cors');
+var corsOptions = {
+    origin: 'http://localhost:3000'
+}
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
-const APIroutes = express.Router();
-
+// MONGOOSE
+require('./server/config/mongoose.js');
+var mongoose = require('mongoose');
 var MultiResponse = mongoose.model('MultiResponse');
 var FreeResponse = mongoose.model('FreeResponse');
 var Section = mongoose.model('Section');
 var Questionaire = mongoose.model('Questionaire');
+mongoose.connect('mongodb://localhost:27017/questionaire', {useNewUrlParser:true} );
 
-APIroutes.route('/freeresponse').post(function(req, res){
+const connection = mongoose.connection;
+connection.once('open', function(){
+    console.log("MongoDB connection has been established")
+})
+
+const questionRoutes = express.Router();
+
+questionRoutes.route('/').get(function(req, res){
+    res.json("BLANK ROUTE POINT")
+})
+questionRoutes.route('/freeresponse').post(function(req, res){
+    console.log("INSIDE MONGOOSE ROUTES")
     var newFreeResponse = new FreeResponse(req.body);
         newFreeResponse.save(function(err){
             if(err){
@@ -30,7 +40,8 @@ APIroutes.route('/freeresponse').post(function(req, res){
             }
         })
 });
-APIroutes.route('/freeresponse').get(function(req, res){
+questionRoutes.route('/freeresponse').get(function(req, res){
+    console.log("INSIDE MONGOOSE ROUTES")
     FreeResponse.find({}, function(err, data){
         if(err){
             res.json(err)
@@ -41,7 +52,7 @@ APIroutes.route('/freeresponse').get(function(req, res){
     })
 });
 
-app.use('/api', APIroutes);
+app.use('/api', questionRoutes);
 app.listen(8000, function(){
     console.log("ON 8000");
 });

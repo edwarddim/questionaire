@@ -9,9 +9,7 @@ class Example extends Component {
         this.props.fetchExample();
         this.props.apiCall();
     }
-
     render() {
-        console.log(this.props)
         return (
         <div>
             <h1>EXAMPLE</h1>
@@ -24,7 +22,7 @@ Example.propTypes = {
     fetchExample: PropTypes.func.isRequired,
     apiCall: PropTypes.func.isRequired,
     example: PropTypes.string
-}
+};
 
 const mapStateToProps = state =>({
     example: state.example.item

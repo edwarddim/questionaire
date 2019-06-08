@@ -1,5 +1,5 @@
 import {FETCH_EXAMPLE, API_CALL} from './type';
-var axios = require('axios');
+import axios from 'axios';
 
 
 export const fetchExample = () => dispatch =>{
@@ -10,11 +10,12 @@ export const fetchExample = () => dispatch =>{
 }
 
 export const apiCall = () => dispatch =>{
-    axios.get('http://localhost:8000/api/freeresponse')
+    console.log("MAKING API CALL")
+    axios.get('http://localhost:8000/api', {crossdomain:true})
     .then(function(res){
-        console.log(res)
+        console.log("CONSOLE LOGGING RESPONSE FROM BACKEND: ", res)
     })
-    dispatch({
+    dispatch({  
         type: API_CALL,
         payload: "CHECKING API CONNECTION"
     })
