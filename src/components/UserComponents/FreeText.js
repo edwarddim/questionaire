@@ -5,8 +5,10 @@ class FreeText extends Component{
         return(
             <div className="card">
                 <div className="card-body">
-                    <h4>FreeText Question</h4>
-                    <input type="textarea"></input>
+                    <h6>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</h6>
+                    <div class="input-group">
+                        <textarea class="form-control" aria-label="With textarea"></textarea>
+                    </div>
                 </div>
             </div>
         )
