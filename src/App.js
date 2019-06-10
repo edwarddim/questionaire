@@ -1,19 +1,27 @@
 import React, { Component } from 'react';
 import {Provider} from 'react-redux';
+import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import store from './store';
 import './App.css';
 
-import Example from './components/example';
+import Navbar from './components/UI/Navbar';
+import UserHome from './components/UserComponents/UserHome';
+import FreeText from './components/UserComponents/FreeText'
 
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-      <div className="App">
-        <Example />
-      </div>
-      </Provider>
+      <BrowserRouter>
+        <Provider store={store}>
+        <div className="App">
+          <Navbar/>
+          <Switch>
+            <Route path='/' component={UserHome}/>
+          </Switch>
+        </div>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }
