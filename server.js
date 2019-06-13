@@ -1,4 +1,4 @@
-// APP
+// EXPRESS
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
@@ -9,10 +9,10 @@ app.use(bodyParser.json());
 // MONGOOSE
 require('./server/config/mongoose.js');
 var mongoose = require('mongoose');
-var MultiResponse = mongoose.model('MultiResponse');
-var FreeResponse = mongoose.model('FreeResponse');
-var Section = mongoose.model('Section');
-var Questionaire = mongoose.model('Questionaire');
+var AdminMultiResponse = mongoose.model('AdminMultiResponse');
+var AdminFreeResponse = mongoose.model('AdminFreeResponse');
+var AdminSection = mongoose.model('AdminSection');
+var AdminQuestionaire = mongoose.model('AdminQuestionaire');
 mongoose.connect('mongodb://localhost:27017/questionaire', {useNewUrlParser:true} );
 
 const connection = mongoose.connection;
@@ -22,12 +22,8 @@ connection.once('open', function(){
 
 const questionRoutes = express.Router();
 
-questionRoutes.route('/').get(function(req, res){
-    res.json("BLANK ROUTE POINT")
-})
 questionRoutes.route('/freeresponse').post(function(req, res){
-    console.log("INSIDE MONGOOSE ROUTES")
-    var newFreeResponse = new FreeResponse(req.body);
+    var newFreeResponse = new AdminFreeResponse(req.body);
         newFreeResponse.save(function(err){
             if(err){
                 res.json(err)
@@ -38,8 +34,29 @@ questionRoutes.route('/freeresponse').post(function(req, res){
         })
 });
 questionRoutes.route('/freeresponse').get(function(req, res){
-    console.log("INSIDE MONGOOSE ROUTES")
-    FreeResponse.find({}, function(err, data){
+    AdminFreeResponse.find({}, function(err, data){
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(data)
+        }
+    })
+});
+questionRoutes.route('/mc').post(function(req, res){
+    console.log(req.body)
+    var newMC = new AdminMultiResponse(req.body)
+        newMC.save(function(err){
+            if(err){
+                res.json(err)
+            }
+            else{
+                res.json("MC created successfully")
+            }
+        })
+});
+questionRoutes.route('/mc').get(function(req, res){
+    AdminMultiResponse.find({}, function(err, data){
         if(err){
             res.json(err)
         }

@@ -1,24 +1,41 @@
 var mongoose = require('mongoose');
 
-var FreeResponseSchema = mongoose.Schema({
+// ADMIN SCHEMAS
+var AdminFreeResponseSchema = mongoose.Schema({
     question: {type:String, required:true}
 })
-
-var MultiResponseSchema = mongoose.Schema({
-    options: [{text: String}]
+var AdminMultiResponseSchema = mongoose.Schema({
+    question:{type:String},
+    options: [],
+    correct_index: {type:String}
 })
-
-var SectionSchema = mongoose.Schema({
+var AdminSectionSchema = mongoose.Schema({
     diaplayName: {type:String, required:true},
-    questions:[FreeResponseSchema, MultiResponseSchema]
+    questions:[AdminFreeResponseSchema, AdminMultiResponseSchema]
 })
-
-var QuestionaireSchema = mongoose.Schema({
+var AdminQuestionaireSchema = mongoose.Schema({
     displayName:{type:String, required:true},
-    sections:[SectionSchema]
+    sections:[AdminSectionSchema]
 })
 
-mongoose.model('Questionaire', QuestionaireSchema)
-mongoose.model('Section', SectionSchema)
-mongoose.model('FreeResponse', FreeResponseSchema)
-mongoose.model('MultiResponse', MultiResponseSchema)
+// USER SCEMAS
+var UserAnswerSchema = mongoose.Schema({
+    answer:[{type: String}]
+})
+var UserSectionResponseSchema = mongoose.Schema({
+    answer:[UserAnswerSchema]
+})
+var UserQuestionaireResposneSchema = mongoose.Schema({
+    by: {name:String, email:String},
+    for: {type:String},
+    sections:[UserAnswerSchema]
+},{timestamps:true})
+
+
+mongoose.model('AdminQuestionaire', AdminQuestionaireSchema)
+mongoose.model('AdminSection', AdminSectionSchema)
+mongoose.model('AdminFreeResponse', AdminFreeResponseSchema)
+mongoose.model('AdminMultiResponse', AdminMultiResponseSchema)
+
+mongoose.model('UserSectionResponse', UserSectionResponseSchema)
+mongoose.model('UserQuestionaireResponse', UserQuestionaireResposneSchema)

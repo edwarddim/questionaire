@@ -6,7 +6,9 @@ import './App.css';
 
 import Navbar from './components/UI/Navbar';
 import UserHome from './components/UserComponents/UserHome';
-import FreeText from './components/UserComponents/FreeText'
+// import FreeText from './components/UserComponents/FreeText'
+
+import AdminHome from './components/AdminComponents/AdminHome'
 
 
 class App extends Component {
@@ -14,10 +16,11 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Provider store={store}>
-        <div className="App">
+        <div className="container">
           <Navbar/>
           <Switch>
-            <Route path='/' component={UserHome}/>
+            <Route path='/user' component={UserHome}/>
+            <Route path='/admin' component={AdminHome}/>
           </Switch>
         </div>
         </Provider>

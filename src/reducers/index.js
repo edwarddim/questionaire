@@ -1,7 +1,10 @@
 import { combineReducers} from 'redux';
 // IMPORT ALL OF YOUR REDUCERS //
-import exampleReducer from './exampleReducers';
+import adminReducer from './adminReducer';
+// import userReducer from './userReducer';
+
 
 export default combineReducers({
-    example: exampleReducer
+    adminState:adminReducer,
+    // userReducer:userReducer
 })
