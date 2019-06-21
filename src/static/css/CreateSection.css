@@ -1,0 +1,16 @@
+.mcBox{
+    border: solid 1px black;
+}
+.frBox{
+    padding: 2px;
+    border: solid 1px black;
+    margin-bottom: 3px;
+}
+.mcBox{
+    padding: 2px;
+    border: solid 1px black;
+    margin-bottom: 3px;
+}
+.queueBox{
+    border: solid 1px black;
+}

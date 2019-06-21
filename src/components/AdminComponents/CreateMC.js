@@ -8,8 +8,7 @@ class CreateMC extends Component{
         option1:"",
         option2:"",
         option3:"",
-        option4:"",
-        correct_index:""
+        option4:""
     }
     handleQuestion = (e) =>{
         this.setState({ question:e.target.value})
@@ -26,14 +25,11 @@ class CreateMC extends Component{
     handleOption4 = (e) =>{
         this.setState({option4:e.target.value})
     }
-    handleClick = (e) =>{
-        this.setState({correct_index:e.target.value})
-    }
 
     render(){
         return(
             <div>
-                <form onSubmit={e=>{
+                <form id="inputForm" onSubmit={e=>{
                     e.preventDefault();
                     this.props.createMC({
                         question:this.state.question,
@@ -42,50 +38,46 @@ class CreateMC extends Component{
                             this.state.option2,
                             this.state.option3,
                             this.state.option4,
-                        ],
-                        correct_index:this.state.correct_index
+                        ]
                     })
+                    this.setState({
+                        question:"",
+                        option1:"",
+                        option2:"",
+                        option3:"",
+                        option4:""
+                    })
+                    e.target.reset();
                 }} name="multiChoice">
                 <div className="input-group">
                     <div className="input-group-prepend">
                         <span className="input-group-text">Enter Question</span>
                     </div>
-                    <textarea onChange={this.handleQuestion} className="form-control" aria-label="With textarea"></textarea>
+                    <textarea id="formInput1" onChange={this.handleQuestion} className="form-control" aria-label="With textarea"></textarea>
                 </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="inputGroup-sizing-sm">Option1</span>
                         </div>
-                        <input onChange={this.handleOption1} type="text" className="form-control" aria-label="Text input with radio button"/>
+                        <input id="formInput2" onChange={this.handleOption1} type="text" className="form-control" aria-label="Text input with radio button"/>
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="inputGroup-sizing-sm">Option2</span>
                         </div>
-                        <input onChange={this.handleOption2} type="text" className="form-control" aria-label="Text input with radio button"/>
+                        <input id="formInput3" onChange={this.handleOption2} type="text" className="form-control" aria-label="Text input with radio button"/>
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="inputGroup-sizing-sm">Option3</span>
                         </div>
-                        <input onChange={this.handleOption3} type="text" className="form-control" aria-label="Text input with radio button"/>
+                        <input id="formInput4" onChange={this.handleOption3} type="text" className="form-control" aria-label="Text input with radio button"/>
                     </div>
                     <div className="input-group">
                         <div className="input-group-prepend">
                             <span className="input-group-text" id="inputGroup-sizing-sm">Option4</span>
                         </div>
-                        <input onChange={this.handleOption4} type="text" className="form-control" aria-label="Text input with radio button"/>
-                    </div>
-                    <div className="input-group mb-3">
-                        <div className="input-group-prepend">
-                            <label className="input-group-text" htmlFor="inputGroupSelect01">Correct Answer</label>
-                        </div>
-                        <select onClick={this.handleClick} className="custom-select" id="inputGroupSelect01">
-                            <option value="0">Option 1</option>
-                            <option value="1">Option 2</option>
-                            <option value="2">Option 3</option>
-                            <option value="3">Option 4</option>
-                        </select>
+                        <input id="formInput5" onChange={this.handleOption4} type="text" className="form-control" aria-label="Text input with radio button"/>
                     </div>
                     <button type="submit" className="btn btn-primary">Create MC</button>
                 </form>

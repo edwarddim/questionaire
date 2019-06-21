@@ -31,7 +31,7 @@
             'questions':[
                 {
                     'type':'multi',
-                    'text': 'Which spelling of esportss is acceptable: 1. Esports, 2.e-sports',
+                    'text': 'Which spelling of esports is acceptable: 1. Esports, 2.e-sports',
                     'options':[
                         {
                             'text':'1'
@@ -51,14 +51,11 @@
         }
     ]
 };
-
-
-
 {
     'id':"some sort of id",
     'by':{'name':"John Does", 'email':'john@gmail.com'},
     'at': "TIMESTAMP",
-    'for': 'QUESIONAIRE SOME SORT OF ID',
+    'for': 'QUESIONAIRE ID',
     'sections':[
         {
             'answers':[
@@ -74,7 +71,7 @@
         {
             'answers':[
                 {
-                    'answer':3  // 0-based index
+                    'answer':'3'  // 0-based index
                 }
             ]
         }

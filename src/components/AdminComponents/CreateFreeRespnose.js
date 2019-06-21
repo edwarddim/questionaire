@@ -16,9 +16,13 @@ class CreateFreeResponse extends Component{
     render(){
         return(
             <div>
-                <form onSubmit={e=>{
+                <form id="inputForm" onSubmit={e=>{
                     e.preventDefault();
                     this.props.createFreeResponse(this.state);
+                    this.setState({
+                        question:''
+                    })
+                    e.target.reset();
                 }}>
                     <div className="input-group">
                         <div className="input-group-prepend">

@@ -6,25 +6,32 @@ import './App.css';
 
 import Navbar from './components/UI/Navbar';
 import UserHome from './components/UserComponents/UserHome';
-// import FreeText from './components/UserComponents/FreeText'
 
+import CreateSection from './components/AdminComponents/CreateSection';
 import AdminHome from './components/AdminComponents/AdminHome'
+import CreateQuestionaire from './components/AdminComponents/createQuestionaire';
+import ManageResponse from './components/AdminComponents/ManageResponse';
+import UserResponse from './components/UserComponents/UserResponse';
 
 
 class App extends Component {
   render() {
     return (
+      <Provider store={store}>
       <BrowserRouter>
-        <Provider store={store}>
         <div className="container">
           <Navbar/>
           <Switch>
-            <Route path='/user' component={UserHome}/>
-            <Route path='/admin' component={AdminHome}/>
+            <Route exact path='/user' component={UserHome}/>
+            <Route exact path='/admin' component={AdminHome}/>
+            <Route exact path='/admin/createSection' component={CreateSection}/>
+            <Route exact path='/admin/createQuestionaire' component={CreateQuestionaire}/>
+            <Route exact path='/admin/links/manage' component={ManageResponse}/>
+            <Route exact path='/res/:id' component={UserResponse}/>
           </Switch>
         </div>
-        </Provider>
       </BrowserRouter>
+      </Provider>
     );
   }
 }

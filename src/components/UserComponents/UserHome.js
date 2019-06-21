@@ -1,17 +1,27 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-import FreeText from './FreeText';
-import MC from './MC';
 
 class UserHome extends Component{
     render(){
+
         return(
             <div>
-                <h1>Questionaire Name</h1>
-                <FreeText/>
-                <MC/>
+                <h1>RESPONSE</h1>
+
             </div>
         )
     }
 };
-export default UserHome;
+
+const mapStateToProps = (state) =>{
+    return{
+
+    }
+};
+const mapDispatchToProps = (dispatch) =>{
+    return{
+        
+    }
+};
+export default connect(mapStateToProps, mapDispatchToProps)(UserHome);

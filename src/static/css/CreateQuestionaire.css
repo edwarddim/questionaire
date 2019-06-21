@@ -1,0 +1,14 @@
+.sectionBox{
+    padding: 2px;
+    border: solid 1px black;
+    margin-bottom: 3px;
+}
+.queueBox{
+    border: solid 1px black;
+    padding: 5px;
+}
+.questionaireBox{
+    border: solid 1px black;
+    margin-bottom: 5px;
+    padding: 5px;
+}

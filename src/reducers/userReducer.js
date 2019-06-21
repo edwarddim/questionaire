@@ -1,15 +1,17 @@
-import { CREATE_MC} from '../actions/type';
+import { FIND_LINK} from '../actions/type';
 
 const initState = {
-    question:{}
+    responseObj:{}
 }
 
 export default function(state = initState, action){
     switch(action.type){
-        case CREATE_MC:
+        case FIND_LINK:
             return{
                 ...state,
-                
+                responseObj:action.payload
             }
+        default:
+            return state;
     }
 }
