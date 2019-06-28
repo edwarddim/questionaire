@@ -38,6 +38,12 @@ export const deleteFreeResponse = (id) => dispatch =>{
 }
 
 export const createMC = (body) => dispatch =>{
+    // const arrLen = body.options.length;
+    // for(let i = arrLen-1 ; i > 0 ; i--){
+    //     if(body.options[i] === ""){
+    //         body.options.splice(i, 1);
+    //     }
+    // }
     axios.post('http://localhost:8000/api/mc', body)
     .then(function(res){
         axios.get('http://localhost:8000/api/mc')
@@ -74,7 +80,6 @@ export const deleteMC = (id) => dispatch =>{
 }
 
 export const createSection = (body) => dispatch =>{
-    console.log(body)
     axios.post('http://localhost:8000/api/section', body)
     .then(function(res){
         dispatch({
@@ -147,6 +152,7 @@ export const createQuestionaire = (body) => dispatch =>{
 export const getQuestionaire = () => dispatch =>{
     axios.get('http://localhost:8000/api/questionaire')
     .then(function(res){
+        
         dispatch({
             type:GET_QUESTIONAIRE,
             payload:res.data
@@ -174,16 +180,18 @@ export const createUserLink = (qBody) => dispatch =>{
             email:""
         },
         for:qBody._id,
-        section:[]
+        sections:[]
     };
     qBody.sections.forEach(function(section){
-        var newSection=[];
+        var newSection={
+            'answers':[]
+        };
         section.questions.forEach(function(question){
-            newSection.push({
-                'text':''
+            newSection.answers.push({
+                'answer':''
             })
         })
-        answerBody.section.push(newSection)
+        answerBody.sections.push(newSection)
     })
     axios.post('http://localhost:8000/api/user', answerBody)
     .then(function(res){

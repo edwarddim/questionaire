@@ -14,11 +14,12 @@ class ManageResposne extends Component{
     render(){
         const {userLinks} = this.props;
         const userLinksList = userLinks.length ? (
-            userLinks.map(links=>{
+            userLinks.map(link=>{
                 return(
-                    <div key={links._id}>
-                        <p>For: {links.for}</p>
-                        <button onClick={() => this.deleteLink(links._id)}>Delete Link</button>
+                    <div key={link._id}>
+                        <p>For: {link.for}</p>
+                        <p>Link: http://localhost:3000/res/{link._id}</p>
+                        <button onClick={() => this.deleteLink(link._id)}>Delete Link</button>
                     </div>
                 )
             })

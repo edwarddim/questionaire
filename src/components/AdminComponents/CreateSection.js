@@ -44,6 +44,7 @@ class CreateSection extends Component{
         const {mcData} = this.props;
         const mcList = mcData.length? (
             mcData.map(mc=>{
+                // console.log(mc)
                 return(
                     <div className="mcBox" key={mc._id}>
                         <p>QUESTION: {mc.question}</p>

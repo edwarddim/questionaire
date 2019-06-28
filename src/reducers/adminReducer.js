@@ -45,7 +45,7 @@ export default function(state = initState, action){
         case CLEAR_SECTION_QUEUE:
             return{
                 ...state,
-                sectionQueue:{}
+                sectionQueue:[]
             }
         case CLEAR_QUESTIONAIRE_QUEUE:
             return{

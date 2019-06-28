@@ -73,7 +73,6 @@ class CreateQuetionaire extends Component{
             <p>Nothing Yet</p>
         )
         const {link} = this.props;
-
         return(
             <div>
                 <form onSubmit={e=>{
@@ -96,8 +95,8 @@ class CreateQuetionaire extends Component{
                     </div>
                 </form>
                 <div className="questionaireBox">
-                    <h4>All Questionaires</h4>
                     {link}
+                    <h4>All Questionaires</h4>
                     {questionaireList}
                 </div>
                 <div className="queueBox">

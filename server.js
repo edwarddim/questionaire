@@ -151,6 +151,16 @@ questionRoutes.delete('/questionaire/:id', function(req, res){
         }
     })
 });
+questionRoutes.get('/questionaire/:id', function(req, res){
+    AdminQuestionaire.findOne({_id:req.params.id}, function(err, data){
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(data)
+        }
+    })
+});
 
 questionRoutes.post('/user', function(req, res){
     var newUserQuestionaire = new UserQuestionaire(req.body)

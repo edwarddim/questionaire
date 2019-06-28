@@ -12,7 +12,7 @@ var AdminMultiResponseSchema = mongoose.Schema({
 })
 var AdminSectionSchema = mongoose.Schema({
     displayName: {type:String, required:true},
-    questions:[AdminFreeResponseSchema, AdminMultiResponseSchema]
+    questions:[]
 })
 var AdminQuestionaireSchema = mongoose.Schema({
     displayName:{type:String, required:true},
@@ -28,7 +28,7 @@ var UserSectionResponseSchema = mongoose.Schema({
     for:{type:String, required:true},
     answer:[]
 })
-var UserQuestionaireResposneSchema = mongoose.Schema({
+var UserQuestionaireResponseSchema = mongoose.Schema({
     by: {name:String, email:String},
     for: {type:String},
     sections:[]
@@ -41,4 +41,4 @@ mongoose.model('AdminMultiResponse', AdminMultiResponseSchema)
 
 mongoose.model('UserAnswer', UserAnswerSchema)
 mongoose.model('UserSection', UserSectionResponseSchema)
-mongoose.model('UserQuestionaire', UserQuestionaireResposneSchema)
+mongoose.model('UserQuestionaire', UserQuestionaireResponseSchema)
