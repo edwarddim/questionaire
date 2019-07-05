@@ -10,7 +10,8 @@ class FreeText extends Component {
     componentDidMount(){
         const {combined} = this.props;
         this.setState({
-            qID: combined.question._id
+            qID: combined.question._id,
+            answer:combined.answer.answer
         })
     };
     handleChange = (e) => {
@@ -18,7 +19,7 @@ class FreeText extends Component {
             answer:e.target.value
         })
     };
-    
+
     render(){
         const {combined} = this.props;
         return(
@@ -30,9 +31,9 @@ class FreeText extends Component {
                     <div className="card-body">
                         <h6>{combined.question.question}</h6>
                         <div className="input-group">
-                            <textarea onChange={this.handleChange} form="freeForm" className="form-control" aria-label="With textarea"></textarea>
+                            <textarea onChange={this.handleChange} value={this.state.answer} form="freeForm" className="form-control" aria-label="With textarea"></textarea>
                         </div>
-                        <button className="btn btn-primary" type="submit">Submit</button>
+                        <button className="btn btn-primary" type="submit">UPDATE</button>
                     </div>
                 </form>
             </div>

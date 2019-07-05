@@ -203,6 +203,16 @@ questionRoutes.get('/link/:id', function(req, res){
         }
     })
 })
+questionRoutes.put('/link/:id', function(req, res){
+    UserQuestionaire.findOneAndUpdate({_id:req.params.id}, req.body, function(err, data){
+        if(err){
+            res.json(err)
+        }
+        else{
+            res.json(data)
+        }
+    })
+})
 
 app.use('/api', questionRoutes);
 app.listen(8000, function(){

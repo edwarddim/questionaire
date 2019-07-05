@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE} from './type'
+import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE, UPDATE_BY_NAME} from './type'
 
 export const findLink = (id) => dispatch =>{
     axios.get('http://localhost:8000/api/link/'+id)
@@ -60,9 +60,20 @@ export function updateQuestionaire(body){
             }
         }
     }
-
-    // dispatch({
-    //     type:UPDATE_PART_QUESTIONAIRE,
-    //     payload: body
-    // })
 };
+
+export const saveUserData = (body) => dispatch => {
+    console.log("User data inside action: ", body)
+    axios.put('http://localhost:8000/api/link/'+body._id, body)
+    .then(function(res){
+        console.log(res)
+    })
+};
+
+export const updateName = (body) => dispatch => {
+    console.log("inside user action")
+    dispatch({
+        type:UPDATE_BY_NAME,
+        payload:body
+    })
+}

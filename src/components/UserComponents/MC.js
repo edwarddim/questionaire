@@ -6,30 +6,39 @@ import {updateQuestionaire} from '../../actions/userAction';
 
 class MC extends Component{
     state={}
+    componentDidMount(){
+        const {combined} = this.props;
+        this.setState({
+            qID: combined.question._id,
+            selectedOption:combined.answer.answer
+        })
+    }
     render(){
         const {combined} = this.props;
+        const mcList = combined.question.options.map((option, index) => {
+            return(
+                <div key={index} className="radio">
+                    <label>
+                        <input type="radio" name="optradio"
+                            checked={ parseInt(this.state.selectedOption, 10) === index }
+                            onChange={(e) => this.setState({answer:''+index, selectedOption: ''+index})}
+                            />{option}
+                    </label>
+                </div>
+            )
+        })
         return(
-            <div key={combined.question._id}>
-                <form id="multiChoice" onSubmit={e => {
-                    e.preventDefault();
-                    console.log(e.target.value)
-                    // this.props.updateQuestionaire(this.state)
-                }}>
-                    <h6>{combined.question.question}</h6>
-                    <div className="radio">
-                        <label><input type="radio" name="optradio" value="0"/>{combined.question.options[0]}</label>
-                    </div>
-                    <div className="radio">
-                        <label><input type="radio" name="optradio" value="1"/>{combined.question.options[1]}</label>
-                    </div>
-                    <div className="radio">
-                        <label><input type="radio" name="optradio" value="2"/>{combined.question.options[2]}</label>
-                    </div>
-                    <div className="radio">
-                        <label><input type="radio" name="optradio" value="3"/>{combined.question.options[3]}</label>
-                    </div>
-                    <button className="btn btn-primary" type="submit">Submit</button>
-                </form>
+            <div key={combined.question._id} className="card">
+                <div className="card-body">
+                    <form id="multiChoice" onSubmit={e => {
+                        e.preventDefault();
+                        this.props.updateQuestionaire(this.state)
+                    }}>
+                        <h6>{combined.question.question}</h6>
+                        {mcList}
+                        <button className="btn btn-primary" type="submit">UPDATE</button>
+                    </form>
+                </div>
             </div>
         )
     }

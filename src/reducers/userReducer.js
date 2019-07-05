@@ -1,5 +1,5 @@
-import { FIND_LINK  , GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE} from '../actions/type';
-import { updateQuestionaire } from '../actions/userAction';
+import { GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE} from '../actions/type';
+
 
 const initState = {
     responseObj:"empty",
@@ -22,28 +22,31 @@ export default function(state = initState, action){
                 questionaireObj:action.payload.questionaireObj
             }
         case UPDATE_PART_QUESTIONAIRE:
-            const list = state.responseObj.sections.map((section, sectionIndex) => {
+            var responseObjCopy = state.responseObj;
+            const list = responseObjCopy.sections.map((section, sectionIndex) => {
                 if(sectionIndex === action.payload.sectionIndex){
-                    return(
-                        section.answers.map((answer, answerIndex) => {
-                            if(answerIndex === action.payload.answerIndex){
-                                return answer.answer = action.payload.answer
-                            }
-                            else{
-                                return answer
-                            }
-                        })
-                    )
+                    section.answers.map((answer, answerIndex) => {
+                        if(answerIndex === action.payload.answerIndex){
+                            answer.answer = action.payload.answer
+                            return answer
+                        }
+                        else{
+                            return answer
+                        }
+                    })
+                    return({
+                        answers:section.answers
+                    })
                 }
                 else{
                     return section
                 }
             })
+            responseObjCopy.sections = list
             return{
                 ...state,
-                responseObj:list
+                responseObj:responseObjCopy
             }
-
         default:
             return state;
     }
