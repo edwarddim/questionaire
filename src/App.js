@@ -12,6 +12,7 @@ import AdminHome from './components/AdminComponents/AdminHome'
 import CreateQuestionaire from './components/AdminComponents/createQuestionaire';
 import ManageResponse from './components/AdminComponents/ManageResponse';
 import UserResponse from './components/UserComponents/UserResponse';
+import ViewResponses from './components/AdminComponents/ViewResponses';
 
 
 class App extends Component {
@@ -27,6 +28,7 @@ class App extends Component {
             <Route exact path='/admin/createSection' component={CreateSection}/>
             <Route exact path='/admin/createQuestionaire' component={CreateQuestionaire}/>
             <Route exact path='/admin/links/manage' component={ManageResponse}/>
+            <Route exact path='/admin/responses' component={ViewResponses} />
             <Route exact path='/res/:id' component={UserResponse}/>
           </Switch>
         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {saveUserData} from '../../actions/userAction';
+import {saveUserData, updateName, updateEmail} from '../../actions/userAction';
 
 
 class UserInfo extends Component{
@@ -15,12 +15,17 @@ class UserInfo extends Component{
             email:by.email
         })
     }
+    componentWillUnmount(){
+        console.log("UNMOUNTING USERINFO COMPONENT")
+    }
     handleNameChange(e){
+        this.props.updateName(e.target.value)
         this.setState({
             name:e.target.value
         })
     }
     handleEmailChange(e){
+        this.props.updateEmail(e.target.value)
         this.setState({
             email:e.target.value
         })
@@ -61,6 +66,8 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         saveUserData:(body) => { dispatch(saveUserData(body)) },
+        updateName:(body) => { dispatch(updateName(body)) },
+        updateEmail:(body) => { dispatch(updateEmail(body)) }
     }
 };
 

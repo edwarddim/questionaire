@@ -213,7 +213,23 @@ questionRoutes.put('/link/:id', function(req, res){
         }
     })
 })
-
+questionRoutes.post('/link/:id', function(req, res){
+    const {sectionIndex} = req.body;
+    const {answerIndex} = req.body;
+    const {answer} = req.body;
+    UserQuestionaire.findById(req.params.id, function(err, data){
+        if(err){
+            res.json(err)
+        }
+        else{
+            data.sections[sectionIndex].answers[answerIndex].answer = answer;
+            UserQuestionaire.updateOne({_id:data._id}, data, function(err, data){
+                if(err) return res.json(err)
+                else return res.json(data)
+            })
+        }
+    })
+})
 app.use('/api', questionRoutes);
 app.listen(8000, function(){
     console.log("ON 8000");

@@ -1,4 +1,4 @@
-import { GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE} from '../actions/type';
+import { GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE, UPDATE_BY_NAME, UPDATE_BY_EMAIL, UPDATED_RESPONSEOBJ} from '../actions/type';
 
 
 const initState = {
@@ -46,6 +46,25 @@ export default function(state = initState, action){
             return{
                 ...state,
                 responseObj:responseObjCopy
+            }
+        case UPDATE_BY_NAME:
+            responseObjCopy = state.responseObj;
+            responseObjCopy.by.name = action.payload
+            return{
+                ...state,
+                responseObj:responseObjCopy
+            }
+        case UPDATE_BY_EMAIL:
+                responseObjCopy = state.responseObj;
+                responseObjCopy.by.email = action.payload
+                return{
+                    ...state,
+                    responseObj:responseObjCopy
+                }
+        case UPDATED_RESPONSEOBJ:
+            return{
+                ...state,
+                responseObj:action.payload
             }
         default:
             return state;

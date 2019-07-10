@@ -4,7 +4,7 @@ import FreeText from './FreeText';
 import MC from './MC';
 import UserInfo from './UserInfo';
 
-import {findLink} from '../../actions/userAction';
+import {findLink, saveUserData} from '../../actions/userAction';
 
 class UserResponse extends Component{
     state = {};
@@ -76,6 +76,7 @@ const mapStateToProps = (state) =>{
 const mapDispatchToProps = (dispatch) =>{
     return{
         findLink:(id) => { dispatch(findLink(id)) },
+        saveUserData:(body) => { dispatch(saveUserData(body)) }
     }
 };
 

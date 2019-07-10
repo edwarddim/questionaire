@@ -13,6 +13,16 @@ class MC extends Component{
             selectedOption:combined.answer.answer
         })
     }
+    handleClick(e,index){
+        this.props.updateQuestionaire({
+            qID:this.state.qID,
+            answer:''+index
+        })
+        this.setState({
+            answer:''+index, 
+            selectedOption: ''+index
+        })
+    }
     render(){
         const {combined} = this.props;
         const mcList = combined.question.options.map((option, index) => {
@@ -21,7 +31,7 @@ class MC extends Component{
                     <label>
                         <input type="radio" name="optradio"
                             checked={ parseInt(this.state.selectedOption, 10) === index }
-                            onChange={(e) => this.setState({answer:''+index, selectedOption: ''+index})}
+                            onChange={(e) => this.handleClick(e,index) }
                             />{option}
                     </label>
                 </div>
@@ -30,13 +40,9 @@ class MC extends Component{
         return(
             <div key={combined.question._id} className="card">
                 <div className="card-body">
-                    <form id="multiChoice" onSubmit={e => {
-                        e.preventDefault();
-                        this.props.updateQuestionaire(this.state)
-                    }}>
+                    <form id="multiChoice">
                         <h6>{combined.question.question}</h6>
                         {mcList}
-                        <button className="btn btn-primary" type="submit">UPDATE</button>
                     </form>
                 </div>
             </div>

@@ -20,6 +20,9 @@ class Navbar extends Component{
                         <Link className="nav-link" to="/admin">Admin</Link>
                     </li>
                     <li className="nav-item">
+                        <Link className="nav-link" to="/admin/responses">Responses</Link>
+                    </li>
+                    <li className="nav-item">
                         <Link className="nav-link" to="/admin/createQuestionaire">Questionaire</Link>
                     </li>
                     <li className="nav-item">

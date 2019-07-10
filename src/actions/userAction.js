@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE, UPDATE_BY_NAME} from './type'
+import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE, UPDATE_BY_NAME, UPDATE_BY_EMAIL, UPDATED_RESPONSEOBJ} from './type'
 
 export const findLink = (id) => dispatch =>{
     axios.get('http://localhost:8000/api/link/'+id)
@@ -32,7 +32,7 @@ export const findLink = (id) => dispatch =>{
 };
 
 export const getOneQuestionaire = (id) => dispatch =>{
-    axios.get('http://locahost:8000/api/questionaire/'+id)
+    axios.get('http://localhost:8000/api/questionaire/'+id)
     .then(function(res){
         dispatch({  
             type:GET_ONE_QUESTIONAIRE,
@@ -44,6 +44,7 @@ export const getOneQuestionaire = (id) => dispatch =>{
 export function updateQuestionaire(body){
     return(dispatch, getState) =>{
         const {combinedBody} = getState().userState;
+        const {responseObj} = getState().userState;
         for(let i=0; i < combinedBody.length; i++ ){
             for(let j=0; j < combinedBody[i].length; j++){
                 if(combinedBody[i][j].question._id === body.qID){
@@ -52,9 +53,13 @@ export function updateQuestionaire(body){
                         "answerIndex":j,
                         "answer":body.answer
                     }
-                    dispatch({
-                        type:UPDATE_PART_QUESTIONAIRE,
-                        payload:payload
+                    axios.post('http://localhost:8000/api/link/'+responseObj._id, payload)
+                    .then(function(res){
+                        console.log(res.data)
+                        dispatch({
+                            type:UPDATED_RESPONSEOBJ,
+                            payload:res.data
+                        })  
                     })
                 }
             }
@@ -63,17 +68,21 @@ export function updateQuestionaire(body){
 };
 
 export const saveUserData = (body) => dispatch => {
-    console.log("User data inside action: ", body)
     axios.put('http://localhost:8000/api/link/'+body._id, body)
     .then(function(res){
-        console.log(res)
     })
 };
 
 export const updateName = (body) => dispatch => {
-    console.log("inside user action")
     dispatch({
         type:UPDATE_BY_NAME,
+        payload:body
+    })
+}
+
+export const updateEmail = (body) => dispatch => {
+    dispatch({
+        type:UPDATE_BY_EMAIL,
         payload:body
     })
 }
