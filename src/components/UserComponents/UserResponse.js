@@ -20,19 +20,19 @@ class UserResponse extends Component{
     render(){
         const {combinedBody} = this.props.userState;
         var showBody = (combinedBody === "empty") ? (
-            <p>THIS IS WHERE THE RESPONSE BODY SHOULD GO</p>
+            <p>Loading questionaire</p>
         ):(
             combinedBody.map(function(section, i){
                 return(
                     section.map(function(combined, i){
                         if(combined.question.type === 'freetext'){
                             return(
-                                <FreeText combined={combined} />
+                                <FreeText combined={combined} key={combined.question._id} />
                             )
                         }
                         else{
                             return(
-                                <MC combined={combined} />
+                                <MC combined={combined} key={combined.question._id} />
                             )
                         }
                     })
@@ -41,23 +41,12 @@ class UserResponse extends Component{
         )
         const {responseObj} = this.props.userState;
         var byBody = (responseObj === "empty") ? (
-            <div className="input-group">
-                <div className="input-group-append">
-                    <span className="input-group-text">NAME</span>
-                </div>
-                <input type="text" aria-label="name" className="form-control"
-                    onChange={(e) => this.handleNameChange(e)}/>
-                <div className="input-group-append">
-                    <span className="input-group-text">EMAIL</span>
-                </div>
-                <input type="email" aria-label="email" className="form-control"
-                    onChange={(e) => this.handleEmailChange(e)}/>
-            </div>
+            null
         ):(
             <UserInfo by={responseObj.by} />
         )
         return(
-            <div>
+            <div key={responseObj._id}>
                 <h1>User Response Page</h1>
                 <hr></hr>
                 {byBody}

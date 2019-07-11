@@ -5,7 +5,6 @@ import store from './store';
 import './App.css';
 
 import Navbar from './components/UI/Navbar';
-import UserHome from './components/UserComponents/UserHome';
 
 import CreateSection from './components/AdminComponents/CreateSection';
 import AdminHome from './components/AdminComponents/AdminHome'
@@ -23,7 +22,6 @@ class App extends Component {
         <div className="container">
           <Navbar/>
           <Switch>
-            <Route exact path='/user' component={UserHome}/>
             <Route exact path='/admin' component={AdminHome}/>
             <Route exact path='/admin/createSection' component={CreateSection}/>
             <Route exact path='/admin/createQuestionaire' component={CreateQuestionaire}/>

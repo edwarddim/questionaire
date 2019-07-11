@@ -10,16 +10,25 @@ class ManageResposne extends Component{
     deleteLink(id){
         this.props.deleteLink(id);
     }
+    copyToClipboard(link){
+        navigator.clipboard.writeText(link);
+    }
 
     render(){
         const {userLinks} = this.props;
         const userLinksList = userLinks.length ? (
             userLinks.map(link=>{
                 return(
-                    <div key={link._id}>
-                        <p>For: {link.for}</p>
-                        <p>Link: http://localhost:3000/res/{link._id}</p>
-                        <button onClick={() => this.deleteLink(link._id)}>Delete Link</button>
+                    <div className="card" key={link._id}>
+                        <div className="card-body">
+                            <p>User: {link.by.name}</p>
+                            <p>Email: {link.by.email}</p>
+                            {
+                                document.queryCommandSupported('copy') && 
+                                <button onClick={() => this.copyToClipboard('http://localhost:3000/res/'+link._id)}>Copy Link</button>
+                            }
+                            <button onClick={() => this.deleteLink(link._id)}>Delete Response</button>
+                        </div>
                     </div>
                 )
             })

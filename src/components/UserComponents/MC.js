@@ -26,19 +26,24 @@ class MC extends Component{
     render(){
         const {combined} = this.props;
         const mcList = combined.question.options.map((option, index) => {
-            return(
-                <div key={index} className="radio">
-                    <label>
-                        <input type="radio" name="optradio"
-                            checked={ parseInt(this.state.selectedOption, 10) === index }
-                            onChange={(e) => this.handleClick(e,index) }
-                            />{option}
-                    </label>
-                </div>
-            )
+            if(option === ""){
+                return null
+            }
+            else{
+                return(
+                    <div key={index} className="radio">
+                        <label>
+                            <input type="radio" name="optradio"
+                                checked={ parseInt(this.state.selectedOption, 10) === index }
+                                onChange={(e) => this.handleClick(e,index) }
+                                />{option}
+                        </label>
+                    </div>
+                )   
+            }
         })
         return(
-            <div key={combined.question._id} className="card">
+            <div className="card">
                 <div className="card-body">
                     <form id="multiChoice">
                         <h6>{combined.question.question}</h6>

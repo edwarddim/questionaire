@@ -33,7 +33,7 @@ class ViewResponses extends Component{
                 <td>Grabbing links...</td>
             </tr>
         )
-
+        
         return(
             <div>
                 <h1>View Responses</h1>

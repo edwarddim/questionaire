@@ -36,8 +36,9 @@ class UserInfo extends Component{
     }, 1000)
 
     render(){
+        const {by}=this.props;
         return(
-            <div className="input-group">
+            <div key={by.name} className="input-group">
                 <div className="input-group-append">
                     <span className="input-group-text">NAME</span>
                 </div>

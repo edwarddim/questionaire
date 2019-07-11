@@ -22,14 +22,13 @@ class FreeText extends Component {
         this.handleSave()
     };
     handleSave = debounce(()=>{
-        console.log('debounce funtion for handle save free text comp')
         this.props.updateQuestionaire(this.state)
     }, 1000)
     
     render(){
         const {combined} = this.props;
         return(
-            <div className="card" key={combined.question._id}>
+            <div className="card">
                 <div className="card-body">
                     <h6>{combined.question.question}</h6>
                     <div className="input-group">
