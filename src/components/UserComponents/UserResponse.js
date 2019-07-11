@@ -52,7 +52,6 @@ class UserResponse extends Component{
                 </div>
                 <input type="email" aria-label="email" className="form-control"
                     onChange={(e) => this.handleEmailChange(e)}/>
-                <button className="btn btn-primary" onClick={()=>this.handleSave()}>SAVE ALL</button>
             </div>
         ):(
             <UserInfo by={responseObj.by} />

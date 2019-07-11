@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import {debounce} from 'lodash';
 
 import {saveUserData, updateName, updateEmail} from '../../actions/userAction';
 
@@ -15,27 +16,24 @@ class UserInfo extends Component{
             email:by.email
         })
     }
-    componentWillUnmount(){
-        console.log("UNMOUNTING USERINFO COMPONENT")
-    }
-    handleNameChange(e){
-        this.props.updateName(e.target.value)
+    handleNameChange = (text) => {
         this.setState({
-            name:e.target.value
+            name:text
         })
+        this.handleSave()
     }
-    handleEmailChange(e){
-        this.props.updateEmail(e.target.value)
+    handleEmailChange = (text)=> {
         this.setState({
-            email:e.target.value
+            email:text
         })
+        this.handleSave()
     }
-    handleSave(){
+    handleSave = debounce(() => {
         const {responseObj} = this.props.userState;
         responseObj.by.name = this.state.name;
         responseObj.by.email = this.state.email;
         this.props.saveUserData(responseObj)
-    }
+    }, 1000)
 
     render(){
         return(
@@ -45,14 +43,13 @@ class UserInfo extends Component{
                 </div>
                 <input type="text" aria-label="name" className="form-control"
                     value={this.state.name}
-                    onChange={(e) => this.handleNameChange(e)}/>
+                    onChange={e => this.handleNameChange(e.target.value)}/>
                 <div className="input-group-append">
                     <span className="input-group-text">EMAIL</span>
                 </div>
                 <input type="email" aria-label="email" className="form-control"
                     value={this.state.email}
-                    onChange={(e) => this.handleEmailChange(e)}/>
-                <button className="btn btn-primary" onClick={()=>this.handleSave()}>SAVE ALL</button>
+                    onChange={(e) => this.handleEmailChange(e.target.value)}/>
             </div>
         )
     }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
+import {debounce} from 'lodash';
 
 import {updateQuestionaire} from '../../actions/userAction';
 
@@ -18,24 +19,23 @@ class FreeText extends Component {
         this.setState({
             answer:e.target.value
         })
+        this.handleSave()
     };
-
+    handleSave = debounce(()=>{
+        console.log('debounce funtion for handle save free text comp')
+        this.props.updateQuestionaire(this.state)
+    }, 1000)
+    
     render(){
         const {combined} = this.props;
         return(
             <div className="card" key={combined.question._id}>
-                <form id="freeForm" onSubmit={e=>{
-                    e.preventDefault();
-                    this.props.updateQuestionaire(this.state)
-                }}>
-                    <div className="card-body">
-                        <h6>{combined.question.question}</h6>
-                        <div className="input-group">
-                            <textarea onChange={this.handleChange} value={this.state.answer} form="freeForm" className="form-control" aria-label="With textarea"></textarea>
-                        </div>
-                        <button className="btn btn-primary" type="submit">UPDATE</button>
+                <div className="card-body">
+                    <h6>{combined.question.question}</h6>
+                    <div className="input-group">
+                        <textarea onChange={this.handleChange} value={this.state.answer} form="freeForm" className="form-control" aria-label="With textarea"></textarea>
                     </div>
-                </form>
+                </div>
             </div>
         )
     }

@@ -29,194 +29,120 @@ const questionRoutes = express.Router();
 questionRoutes.post('/freeresponse', function(req, res){
     var newFreeResponse = new AdminFreeResponse(req.body);
         newFreeResponse.save(function(err, data){
-            if(err){
-                res.json(err)
-            }
-            else{
-                res.json(data)
-            }
+            if(err) return res.json(err)
+            else return res.json(data)
         })
 });
 questionRoutes.get('/freeresponse', function(req, res){
     AdminFreeResponse.find({}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.delete('/freeresponse/:id', function(req,res){
     console.log("INSIDE API ROUTE DELETE, BODY: ", req.params.id)
     AdminFreeResponse.deleteOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json("Deleted FR Successfully")
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.post('/mc', function(req, res){
     var newMC = new AdminMultiResponse(req.body)
         newMC.save(function(err, data){
-            if(err){
-                res.json(err)
-            }
-            else{
-                res.json(data)
-            }
+            if(err) return res.json(err)
+            else return res.json(data)
         })
 });
 questionRoutes.get('/mc', function(req, res){
     AdminMultiResponse.find({}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.delete('/mc/:id', function(req, res){
     AdminMultiResponse.deleteOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json("Deleted MC Successfully")
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.post('/section', function(req, res){
     var newSection = new AdminSection(req.body)
     newSection.save(function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.get('/section', function(req,res){
     AdminSection.find({}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.delete('/section/:id', function(req, res){
     AdminSection.deleteOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.post('/questionaire', function(req, res){
     var newQuestionaire = new AdminQuestionaire(req.body)
     newQuestionaire.save(function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.get('/questionaire', function(req, res){
     AdminQuestionaire.find({}, function(err,data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.delete('/questionaire/:id', function(req, res){
     AdminQuestionaire.deleteOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 questionRoutes.get('/questionaire/:id', function(req, res){
     AdminQuestionaire.findOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 });
 
 questionRoutes.post('/user', function(req, res){
     var newUserQuestionaire = new UserQuestionaire(req.body)
     newUserQuestionaire.save(function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 })
 questionRoutes.get('/link', function(req, res){
     UserQuestionaire.find({}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 })
 questionRoutes.delete('/link/:id', function(req, res){
     UserQuestionaire.deleteOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 })
 questionRoutes.get('/link/:id', function(req, res){
     UserQuestionaire.findOne({_id:req.params.id}, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 })
 questionRoutes.put('/link/:id', function(req, res){
     UserQuestionaire.findOneAndUpdate({_id:req.params.id}, req.body, function(err, data){
-        if(err){
-            res.json(err)
-        }
-        else{
-            res.json(data)
-        }
+        if(err) return res.json(err)
+        else return res.json(data)
     })
 })
 questionRoutes.post('/link/:id', function(req, res){
-    const {sectionIndex} = req.body;
-    const {answerIndex} = req.body;
-    const {answer} = req.body;
+    const {sectionIndex, answerIndex, answer} = req.body;
     UserQuestionaire.findById(req.params.id, function(err, data){
         if(err){
             res.json(err)
@@ -230,6 +156,14 @@ questionRoutes.post('/link/:id', function(req, res){
         }
     })
 })
+questionRoutes.get('/link/name/:name', function(req, res){
+    UserQuestionaire.find({'by.name': {$regex:req.params.name , $options: 'i'} }, function(err, data){
+        if(err) return res.json(err);
+        else return res.json(data);
+    })
+})
+
+
 app.use('/api', questionRoutes);
 app.listen(8000, function(){
     console.log("ON 8000");

@@ -1,4 +1,4 @@
-import {GET_USER_LINK, CLEAR_SECTION_QUEUE, GET_FREE_RESPONSE, GET_MC, ADD_QUESTION_TO_QUEUE, GET_SECTION, ADD_SECTION_TO_QUEUE, GET_QUESTIONAIRE, CLEAR_QUESTIONAIRE_QUEUE, SEND_USER_LINK} from './type';
+import {GET_USER_LINK, CLEAR_SECTION_QUEUE, GET_FREE_RESPONSE, GET_MC, ADD_QUESTION_TO_QUEUE, GET_SECTION, ADD_SECTION_TO_QUEUE, GET_QUESTIONAIRE, CLEAR_QUESTIONAIRE_QUEUE, SEND_USER_LINK, SEARCH_RESPONSE_BY_NAME} from './type';
 import axios from 'axios';
 
 export const createFreeResponse = (body) => dispatch =>{
@@ -38,12 +38,6 @@ export const deleteFreeResponse = (id) => dispatch =>{
 }
 
 export const createMC = (body) => dispatch =>{
-    // const arrLen = body.options.length;
-    // for(let i = arrLen-1 ; i > 0 ; i--){
-    //     if(body.options[i] === ""){
-    //         body.options.splice(i, 1);
-    //     }
-    // }
     axios.post('http://localhost:8000/api/mc', body)
     .then(function(res){
         axios.get('http://localhost:8000/api/mc')
@@ -152,7 +146,6 @@ export const createQuestionaire = (body) => dispatch =>{
 export const getQuestionaire = () => dispatch =>{
     axios.get('http://localhost:8000/api/questionaire')
     .then(function(res){
-        
         dispatch({
             type:GET_QUESTIONAIRE,
             payload:res.data
@@ -222,6 +215,16 @@ export const deleteLink = (id) => dispatch =>{
                 type:GET_USER_LINK,
                 payload:res.data
             })
+        })
+    })
+};
+
+export const findLinkByName = (name) => dispatch =>{
+    axios.get('http://localhost:8000/api/link/name/'+name)
+    .then(function(res){
+        dispatch({
+            type: SEARCH_RESPONSE_BY_NAME,
+            payload:res.data
         })
     })
 };

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_PART_QUESTIONAIRE, UPDATE_BY_NAME, UPDATE_BY_EMAIL, UPDATED_RESPONSEOBJ} from './type'
+import {GET_ONE_QUESTIONAIRE, GET_COMBINED_BODY, UPDATE_BY_NAME, UPDATE_BY_EMAIL, UPDATED_RESPONSEOBJ} from './type'
 
 export const findLink = (id) => dispatch =>{
     axios.get('http://localhost:8000/api/link/'+id)
@@ -43,8 +43,7 @@ export const getOneQuestionaire = (id) => dispatch =>{
 
 export function updateQuestionaire(body){
     return(dispatch, getState) =>{
-        const {combinedBody} = getState().userState;
-        const {responseObj} = getState().userState;
+        const { responseObj , combinedBody } = getState().userState;
         for(let i=0; i < combinedBody.length; i++ ){
             for(let j=0; j < combinedBody[i].length; j++){
                 if(combinedBody[i][j].question._id === body.qID){
@@ -55,11 +54,13 @@ export function updateQuestionaire(body){
                     }
                     axios.post('http://localhost:8000/api/link/'+responseObj._id, payload)
                     .then(function(res){
-                        console.log(res.data)
-                        dispatch({
-                            type:UPDATED_RESPONSEOBJ,
-                            payload:res.data
-                        })  
+                        axios.get('http://localhost:8000/api/link/'+responseObj._id)
+                        .then(function(res){
+                            dispatch({
+                                type:UPDATED_RESPONSEOBJ,
+                                payload:res.data
+                            })
+                        })
                     })
                 }
             }
@@ -70,6 +71,7 @@ export function updateQuestionaire(body){
 export const saveUserData = (body) => dispatch => {
     axios.put('http://localhost:8000/api/link/'+body._id, body)
     .then(function(res){
+
     })
 };
 

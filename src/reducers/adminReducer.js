@@ -1,4 +1,4 @@
-import {CLEAR_SECTION_QUEUE, CLEAR_QUESTIONAIRE_QUEUE,  GET_FREE_RESPONSE, GET_MC, ADD_QUESTION_TO_QUEUE, DELETE_FREE_RESPONSE, DELETE_MC, GET_SECTION, ADD_SECTION_TO_QUEUE, GET_QUESTIONAIRE, GET_USER_LINK, SEND_USER_LINK} from '../actions/type';
+import {CLEAR_SECTION_QUEUE, CLEAR_QUESTIONAIRE_QUEUE,  GET_FREE_RESPONSE, GET_MC, ADD_QUESTION_TO_QUEUE, DELETE_FREE_RESPONSE, DELETE_MC, GET_SECTION, ADD_SECTION_TO_QUEUE, GET_QUESTIONAIRE, GET_USER_LINK, SEND_USER_LINK, SEARCH_RESPONSE_BY_NAME} from '../actions/type';
 
 const initState = {
     freequestions:[],
@@ -66,6 +66,11 @@ export default function(state = initState, action){
             return{
                 ...state,
                 link:action.payload
+            }
+        case SEARCH_RESPONSE_BY_NAME:
+            return{
+                ...state,
+                userLinks:action.payload
             }
         default:
             return state;
