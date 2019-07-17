@@ -2,7 +2,9 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import FreeText from './FreeText';
 import MC from './MC';
+
 import UserInfo from './UserInfo';
+// import UserInfo from './UserFormik';
 
 import {findLink, saveUserData} from '../../actions/userAction';
 

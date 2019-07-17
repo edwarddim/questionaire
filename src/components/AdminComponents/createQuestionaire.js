@@ -75,31 +75,31 @@ class CreateQuetionaire extends Component{
         const {link} = this.props;
         return(
             <div>
-                <form onSubmit={e=>{
-                    e.preventDefault();
-                    this.props.createQuestionaire({
-                        displayName:this.state.displayName,
-                        sections: this.props.questionaireQueue
-                    })
-                    this.setState({
-                        displayName:""
-                    })
-                    e.target.reset();
-                    this.props.clearQuestionaireQueue();
-                }} >
-                    <div className="input-group mb-3">
-                        <input onChange={this.handleTitleChange} type="text" className="form-control" placeholder="Enter your qustionaire Title here"/>
-                        <div className="input-group-append">
-                            <button type="submit" className="btn btn-outline-secondary">Create Questionaire</button>
-                        </div>
-                    </div>
-                </form>
                 <div className="questionaireBox">
                     {link}
                     <h4>All Questionaires</h4>
                     {questionaireList}
                 </div>
                 <div className="queueBox">
+                    <form onSubmit={e=>{
+                        e.preventDefault();
+                        this.props.createQuestionaire({
+                            displayName:this.state.displayName,
+                            sections: this.props.questionaireQueue
+                        })
+                        this.setState({
+                            displayName:""
+                        })
+                        e.target.reset();
+                        this.props.clearQuestionaireQueue();
+                    }} >
+                        <div className="input-group mb-3">
+                            <input onChange={this.handleTitleChange} type="text" className="form-control" placeholder="Enter your qustionaire Title here"/>
+                            <div className="input-group-append">
+                                <button type="submit" className="btn btn-outline-primary    ">Create Questionaire</button>
+                            </div>
+                        </div>
+                    </form>
                     {queueList}
                 </div>
                 <h4>Add Sections to Questionare Creation Queue</h4>

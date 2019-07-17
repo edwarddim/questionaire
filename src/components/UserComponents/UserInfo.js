@@ -33,7 +33,7 @@ class UserInfo extends Component{
         responseObj.by.name = this.state.name;
         responseObj.by.email = this.state.email;
         this.props.saveUserData(responseObj)
-    }, 1000)
+    }, 1500)
 
     render(){
         const {by}=this.props;

@@ -44,7 +44,6 @@ class CreateSection extends Component{
         const {mcData} = this.props;
         const mcList = mcData.length? (
             mcData.map(mc=>{
-                // console.log(mc)
                 return(
                     <div className="mcBox" key={mc._id}>
                         <p>QUESTION: {mc.question}</p>
@@ -77,27 +76,26 @@ class CreateSection extends Component{
         return(
             <div>
                 <div>
-                    <h5>Enter Section Name</h5>
-                    <form onSubmit={e=>{
-                        e.preventDefault();
-                        this.props.createSection({
-                            displayName:this.state.sectionName,
-                            questions:this.props.sectionQueue
-                        });
-                        this.setState({
-                            sectionName:""
-                        });
-                        this.props.clearSectionQueue();
-                        e.target.reset();
-                    }}>
-                        <div className="input-group mb-3">
-                            <input onChange={this.handleTitleChange} type="text" className="form-control"/>
-                            <div className="input-group-append">
-                                <button type="submit" className="btn btn-outline-secondary">Create Section</button>
-                            </div>
-                        </div>
-                    </form>
                     <div className="queueBox">
+                        <form onSubmit={e=>{
+                            e.preventDefault();
+                            this.props.createSection({
+                                displayName:this.state.sectionName,
+                                questions:this.props.sectionQueue
+                            });
+                            this.setState({
+                                sectionName:""
+                            });
+                            this.props.clearSectionQueue();
+                            e.target.reset();
+                        }}>
+                            <div className="input-group mb-3">
+                                <input onChange={this.handleTitleChange} type="text" className="form-control" placeholder="Enter your section name here" />
+                                <div className="input-group-append">
+                                    <button type="submit" className="btn btn-outline-primary">Create Section</button>
+                                </div>
+                            </div>
+                        </form>
                         {queueList}
                     </div>
                 </div>

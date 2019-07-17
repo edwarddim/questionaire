@@ -13,7 +13,6 @@ import ManageResponse from './components/AdminComponents/ManageResponse';
 import UserResponse from './components/UserComponents/UserResponse';
 import ViewResponses from './components/AdminComponents/ViewResponses';
 
-
 class App extends Component {
   render() {
     return (
